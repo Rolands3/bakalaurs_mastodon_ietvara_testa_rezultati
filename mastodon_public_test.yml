@@ -1,0 +1,23 @@
+config:
+  target: "https://thisismystodon.xyz"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+  defaults:
+    headers:
+      accept: "application/json"
+
+scenarios:
+  - name: Public API endpoints
+    flow:
+      - get: { url: "/api/v1/timelines/public" }
+      - get: { url: "/api/v1/instance" }
+      - get: { url: "/nodeinfo/2.0" }
+      
+  - name: Public HTML pages
+    flow:
+      - get: { url: "/about" }
+      - get: { url: "/" }
+      - get: { url: "/@rolands_admin" }
+      - get: { url: "/@rolands_admin/114517815631025856" }
+
